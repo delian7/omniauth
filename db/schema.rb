@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713195454) do
+ActiveRecord::Schema.define(version: 20150714034638) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,29 @@ ActiveRecord::Schema.define(version: 20150713195454) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "sqlite_sp_functions", id: false, force: :cascade do |t|
+    t.text "name"
+    t.text "text"
+  end
+
+# Could not dump table "sqlite_stat1" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
+# Could not dump table "sqlite_stat4" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
+  create_table "sqlite_vs_links_names", id: false, force: :cascade do |t|
+    t.text "name"
+    t.text "alias"
+  end
+
+  create_table "sqlite_vs_properties", id: false, force: :cascade do |t|
+    t.text "parentType"
+    t.text "parentName"
+    t.text "propertyName"
+    t.text "propertyValue"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,6 +57,9 @@ ActiveRecord::Schema.define(version: 20150713195454) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
